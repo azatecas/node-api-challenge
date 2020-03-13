@@ -14,5 +14,44 @@ router.get('/', (req, res) => {
         })
 })
 
+router.post('/', (req, res) => {
+    const body = req.body;
+    Action
+        .insert(body)
+        .then(() => {
+            res.status(201).json({message: "action created", action: body})
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                errorMessage: "error on adding action" 
+            })}
+        )
+})
+
+router.put('/:id', (req, res) => {
+    const { id } = req.params;
+    const body = req.body;
+    Action
+        .update(id, body)
+        .then(() => {
+            res.status(200).json({message: "it has edited", action: body })
+        })
+        .catch(() => {
+            res.status(500).json({
+                errorMessage: "error on editing action"
+            })
+        })
+})
+
+
+router.delete('/:id', (req, res) => {
+    const { id } = req.params;
+    Action
+        .remove(id)
+        .then(() => {
+            res.status(200).json({message: "deleted successfully", id_of_show_deleted: id})
+        })
+})
 
 module.exports = router;

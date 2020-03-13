@@ -3,7 +3,7 @@ import axios from 'axios';
 import Projects from './Projects';
 
 const ProjectsList = ({toggle}) => {
-    const [project, setProjects ] = useState([])
+    const [project, setProjects ] = useState([]);
 
 
     useEffect(() => {
